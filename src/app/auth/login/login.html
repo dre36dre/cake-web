@@ -1,1 +1,25 @@
-<p>login works!</p>
+<div style="width:300px;margin:auto;margin-top:100px">
+
+  <h2>Login</h2>
+
+  <form (ngSubmit)="onSubmit()">
+
+    <div>
+      <label>Email</label>
+      <input type="email" [(ngModel)]="email" name="email" required>
+    </div>
+
+    <br>
+
+    <div>
+      <label>Senha</label>
+      <input type="password" [(ngModel)]="password" name="password" required>
+    </div>
+
+    <br>
+
+    <button type="submit">Entrar</button>
+
+  </form>
+
+</div>
