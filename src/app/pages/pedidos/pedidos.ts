@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { PedidosService } from '../../services/pedidos.service';
+import { PedidosService } from '../../services/pedidos.service';// corrigido
 import { Pedido } from '../../models/pedido.model';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -20,7 +20,7 @@ export class Pedidos {
   }
 
   carregarPedidos() {
-    this.service.listar().subscribe(lista => this.pedidos.set(lista));
+    this.service.listar().subscribe((lista: Pedido[]) => this.pedidos.set(lista)); // tipagem adicionada
   }
 
   salvar() {

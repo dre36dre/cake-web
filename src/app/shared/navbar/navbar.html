@@ -1,0 +1,13 @@
+<nav class="navbar">
+  <h2>Loja de Bolos 🎂</h2>
+
+   <!-- Ícone hambúrguer visível em telas pequenas -->
+  <button class="menu-btn" (click)="toggleMenu()">☰</button>
+
+  <ul>
+    <li><a routerLink="/dashboard">Dashboard</a></li>
+    <li><a routerLink="/products">Produtos</a></li>
+    <li><a routerLink="/orders">Pedidos</a></li>
+    <li *ngIf="logado"><a (click)="logout()">Sair</a></li>
+  </ul>
+</nav>
