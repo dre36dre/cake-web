@@ -1,0 +1,22 @@
+<div class="pedidos">
+  <h1>Gestão de Pedidos 📦</h1>
+
+  <form (ngSubmit)="salvar()">
+    <input [(ngModel)]="novoPedido.cliente" name="cliente" placeholder="Cliente" required>
+    <input [(ngModel)]="novoPedido.produto" name="produto" placeholder="Produto" required>
+    <input [(ngModel)]="novoPedido.quantidade" name="quantidade" type="number" min="1" required>
+    <select [(ngModel)]="novoPedido.status" name="status">
+      <option value="PENDENTE">Pendente</option>
+      <option value="CONCLUÍDO">Concluído</option>
+    </select>
+    <button type="submit">Salvar</button>
+  </form>
+
+  <ul>
+    <li *ngFor="let p of pedidos()">
+      <strong>{{ p.cliente }}</strong> pediu {{ p.quantidade }}x {{ p.produto }}
+      <span> - Status: {{ p.status }}</span>
+      <button (click)="excluir(p.id!)">Excluir</button>
+    </li>
+  </ul>
+</div>

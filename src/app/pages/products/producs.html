@@ -1,0 +1,18 @@
+<div class="products">
+  <h1>Gestão de Bolos 🍰</h1>
+
+  <form (ngSubmit)="salvar()">
+    <input [(ngModel)]="novoProduto.nome" name="nome" placeholder="Nome do bolo" required>
+    <input [(ngModel)]="novoProduto.preco" name="preco" type="number" placeholder="Preço" required>
+    <textarea [(ngModel)]="novoProduto.descricao" name="descricao" placeholder="Descrição"></textarea>
+    <button type="submit">Salvar</button>
+  </form>
+
+  <ul>
+    <li *ngFor="let p of produtos()">
+      <strong>{{ p.nome }}</strong> - R$ {{ p.preco }}
+      <p>{{ p.descricao }}</p>
+      <button (click)="excluir(p.id!)">Excluir</button>
+    </li>
+  </ul>
+</div>
