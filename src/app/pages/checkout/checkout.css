@@ -1,0 +1,15 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 300px;
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background-color: #25D366; /* verde WhatsApp */
+  color: white;
+  border: none;
+  border-radius: 5px;
+}

@@ -6,10 +6,16 @@ import { Pedidos } from './pages/pedidos/pedidos';
 import { Login } from './auth/login/login';
 import { Catalogo } from './pages/catalogo/catalogo';
 import { Carrinho } from './pages/carrinho/carrinho';
+import { Checkout } from './pages/checkout/checkout';
+import { Historico } from './pages/historico/historico';
+
+
 
 
 
 export const routes: Routes = [
+  { path: 'historico', component: Historico },
+  { path: 'checkout', component: Checkout },
   { path: 'carrinho', component: Carrinho },
   { path: '', component: Catalogo },
   { path: 'login', component: Login },

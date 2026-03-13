@@ -9,6 +9,11 @@ export class PedidosService {
 
   constructor(private http: HttpClient) {}
 
+    listarPorCliente(clienteId: number): Observable<Pedido[]> {
+    return this.http.get<Pedido[]>(`${this.apiUrl}/cliente/${clienteId}`);
+  }
+
+
   listar(): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(this.apiUrl);
   }
