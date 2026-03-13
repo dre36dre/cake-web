@@ -1,0 +1,17 @@
+<h2>Seu Carrinho</h2>
+
+<div *ngFor="let item of carrinho.itens()">
+  <h3>{{ item.produto.nome }}</h3>
+  <p>Preço: R$ {{ item.produto.preco }}</p>
+  <label>
+    Quantidade:
+    <input type="number" [value]="item.qtd"
+           (change)="carrinho.alterarQtd(item.produto.id, $event.target.value)" />
+  </label>
+  <button (click)="carrinho.remover(item.produto.id)">Remover</button>
+</div>
+
+<hr>
+<strong>Total: R$ {{ carrinho.total() }}</strong>
+<br>
+<button routerLink="/checkout">Finalizar Pedido</button>

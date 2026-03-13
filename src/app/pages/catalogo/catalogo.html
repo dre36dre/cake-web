@@ -1,0 +1,12 @@
+<h2>Catálogo de Produtos</h2>
+
+<input [(ngModel)]="filtro()" placeholder="Buscar produto..." />
+
+<div class="grid">
+  <div class="card" *ngFor="let produto of produtosFiltrados">
+    <h3>{{ produto.nome }}</h3>
+    <p>{{ produto.descricao }}</p>
+    <strong>R$ {{ produto.preco }}</strong>
+    <button (click)="adicionar(produto)">Adicionar ao carrinho</button>
+  </div>
+</div>
