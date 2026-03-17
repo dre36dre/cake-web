@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { PedidosService } from '../../services/pedidos.service';
-import { Pedido } from '../../models/pedido.model';
+import { Pedido } from '../../models/pedido';
 
 @Component({
   selector: 'app-historico',

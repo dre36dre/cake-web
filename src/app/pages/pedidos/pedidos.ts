@@ -1,36 +1,41 @@
-import { Component, signal } from '@angular/core';
-import { PedidosService } from '../../services/pedidos.service';// corrigido
-import { Pedido } from '../../models/pedido.model';
-import { NgFor, NgIf } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+// src/app/pages/pedidos/pedidos.ts
+import { Component } from '@angular/core';
+import { Pedido } from '../../models/pedido';
 
 @Component({
-  selector: 'app-pedidos',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule],
+  selector: 'app-pedidos',
   templateUrl: './pedidos.html',
-  styleUrls: ['./pedidos.css']
+
 })
 export class Pedidos {
-  pedidos = signal<Pedido[]>([]);
-  novoPedido: Pedido = { cliente: '', produto: '', quantidade: 1, status: 'PENDENTE' };
+  pedidos: Pedido[] = [];
 
-  constructor(private service: PedidosService) {
-    this.carregarPedidos();
-  }
-
-  carregarPedidos() {
-    this.service.listar().subscribe((lista: Pedido[]) => this.pedidos.set(lista)); // tipagem adicionada
-  }
+  novoPedido: Pedido = {
+    id: 1,
+    cliente: '',
+    status: 'PENDENTE',
+    itens: [],
+    data: new Date(),
+    total: 0
+  };
 
   salvar() {
-    this.service.salvar(this.novoPedido).subscribe(() => {
-      this.carregarPedidos();
-      this.novoPedido = { cliente: '', produto: '', quantidade: 1, status: 'PENDENTE' };
-    });
+    // adiciona o pedido na lista
+    this.pedidos.push({ ...this.novoPedido });
+
+    // reseta o formulário
+    this.novoPedido = {
+      id: this.pedidos.length + 1,
+      cliente: '',
+      status: 'PENDENTE',
+      itens: [],
+      data: new Date(),
+      total: 0
+    };
   }
 
   excluir(id: number) {
-    this.service.excluir(id).subscribe(() => this.carregarPedidos());
+    this.pedidos = this.pedidos.filter(p => p.id !== id);
   }
 }

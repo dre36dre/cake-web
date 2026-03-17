@@ -1,26 +1,29 @@
 import { Component, signal } from '@angular/core';
 import { ProdutosService } from '../../services/produtos.service'; // corrigido
-import { Product } from '../../models/product.model';
-import { NgFor, NgIf } from '@angular/common';
+import { Produto } from '../../models/produto';
+
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule],
+ 
   templateUrl: './produtos.html',
   styleUrls: ['./produtos.css']
 })
-export class Products {
-  produtos = signal<Product[]>([]);
-  novoProduto: Product = { nome: '', preco: 0, descricao: '' };
+export class Produto {
+  produtos = signal<Produto[]>([]);
+  novoProduto: Produto = {
+    nome: '', preco: 0, descricao: '',
+    id: 0
+  };
 
   constructor(private service: ProdutosService) {
     this.carregarProdutos();
   }
 
   carregarProdutos() {
-    this.service.listar().subscribe((lista: Product[]) => this.produtos.set(lista));
+    this.service.listar().subscribe((lista: Produto[]) => this.produtos.set(lista));
   }
 
   salvar() {

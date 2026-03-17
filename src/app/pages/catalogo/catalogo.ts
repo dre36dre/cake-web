@@ -1,19 +1,19 @@
 import { Component, signal } from '@angular/core';
-import { NgFor, FormsModule } from '@angular/common';
+
 import { ProdutosService } from '../../services/produtos.service';
-import { Product } from '../../models/product.model';
+import { Produto } from '../../models/produto';
 
 @Component({
   selector: 'app-catalogo',
   standalone: true,
-  imports: [NgFor, FormsModule],
+  
   templateUrl: './catalogo.html',
   styleUrls: ['./catalogo.css']
 })
 export class Catalogo {
-  produtos = signal<Product[]>([]);
+  produtos = signal<Produto[]>([]);
   filtro = signal('');
-  carrinho = signal<Product[]>([]);
+  carrinho = signal<Produto[]>([]);
 
   constructor(private service: ProdutosService) {
     this.carregarProdutos();
@@ -23,11 +23,11 @@ export class Catalogo {
     this.service.listar().subscribe(lista => this.produtos.set(lista));
   }
 
-  adicionar(produto: Product) {
+  adicionar(produto: Produto) {
     this.carrinho.update(lista => [...lista, produto]);
   }
 
-  get produtosFiltrados(): Product[] {
+  get produtosFiltrados(): Produto[] {
     const termo = this.filtro().toLowerCase();
     return this.produtos().filter(p =>
       p.nome.toLowerCase().includes(termo)
