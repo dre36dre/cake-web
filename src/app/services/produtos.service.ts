@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Produto } from '../models/produto';
+import { Produtos } from '../models/produto';
 
 @Injectable({ providedIn: 'root' })
 export class ProdutosService {
@@ -9,12 +9,12 @@ export class ProdutosService {
 
   constructor(private http: HttpClient) {}
 
-  listar(): Observable<Produto[]> {
-    return this.http.get<Produto[]>(this.apiUrl);
+  listar(): Observable<Produtos[]> {
+    return this.http.get<Produtos[]>(this.apiUrl);
   }
 
-  salvar(produto: Produto): Observable<Produto> {
-    return this.http.post<Produto>(this.apiUrl, produto);
+  salvar(produto: Produtos): Observable<Produtos> {
+    return this.http.post<Produtos>(this.apiUrl, produto);
   }
 
   excluir(id: number): Observable<void> {

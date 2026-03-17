@@ -1,11 +1,11 @@
 import { Injectable, signal } from '@angular/core';
-import { Produto } from '../models/produto';
+import { Produtos } from '../models/produto';
 
 @Injectable({ providedIn: 'root' })
 export class CarrinhoService {
-  itens = signal<{ produto: Produto, qtd: number }[]>([]);
+  itens = signal<{ produto: Produtos, qtd: number }[]>([]);
 
-  adicionar(produto: Produto) {
+  adicionar(produto: Produtos) {
     const lista = this.itens();
     const existente = lista.find(i => i.produto.id === produto.id);
 

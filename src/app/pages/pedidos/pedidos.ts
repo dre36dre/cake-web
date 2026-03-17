@@ -1,6 +1,7 @@
 // src/app/pages/pedidos/pedidos.ts
 import { Component } from '@angular/core';
 import { Pedido } from '../../models/pedido';
+import { Pedido } from '../../models/pedido.model';
 
 @Component({
   standalone: true,
@@ -17,7 +18,9 @@ export class Pedidos {
     status: 'PENDENTE',
     itens: [],
     data: new Date(),
-    total: 0
+    total: 0,
+    produto: '',
+    quantidade: 0
   };
 
   salvar() {
@@ -26,7 +29,7 @@ export class Pedidos {
 
     // reseta o formulário
     this.novoPedido = {
-      id: this.pedidos.length + 1,
+      
       cliente: '',
       status: 'PENDENTE',
       itens: [],
