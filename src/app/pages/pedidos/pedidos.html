@@ -3,8 +3,6 @@
 
   <form (ngSubmit)="salvar()">
     <input type="text" [(ngModel)]="novoPedido.cliente" name="cliente" placeholder="Cliente" required />
-    <input type="number" [(ngModel)]="novoPedido.quantidade" name="quantidade" placeholder="Quantidade" required />
-    <input type="text" [(ngModel)]="novoPedido.produto" name="produto" placeholder="Produto" required />
 
     <select [(ngModel)]="novoPedido.status" name="status">
       <option value="PENDENTE">Pendente</option>
@@ -16,9 +14,13 @@
 
   <ul>
     <li *ngFor="let p of pedidos">
-      <strong>{{ p.cliente }}</strong> pediu {{ p.quantidade }}x {{ p.produto }}
-      <span> - Status: {{ p.status }}</span>
-      <button (click)="excluir(p.id)">Excluir</button>
+      <strong>{{ p.cliente }}</strong> - Status: {{ p.status }} <br />
+      <span *ngFor="let item of p.itens">
+        {{ item.qtd }}x {{ item.nome }} - R$ {{ item.preco }}
+      </span>
+      <br />
+      Total: R$ {{ p.total }}
+      <button (click)="excluir(p.id!)">Excluir</button>
     </li>
   </ul>
 </div>

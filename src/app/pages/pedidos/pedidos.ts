@@ -1,35 +1,58 @@
-// src/app/pages/pedidos/pedidos.ts
-import { Component } from '@angular/core';
-import { Pedido } from '../../models/pedido';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Pedido } from '../../models/pedido.model';
+import { Item } from '../../models/item.model';
 
 @Component({
-  standalone: true,
   selector: 'app-pedidos',
-  templateUrl: './pedidos.html',
-
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './pedidos.html'
 })
-export class Pedidos {
+export class PedidosComponent implements OnInit {
   pedidos: Pedido[] = [];
-
   novoPedido: Pedido = {
-    id: 1,
     cliente: '',
     status: 'PENDENTE',
     itens: [],
     data: new Date(),
-    total: 0,
-    produto: '',
-    quantidade: 0
+    total: 0
   };
 
-  salvar() {
-    // adiciona o pedido na lista
-    this.pedidos.push({ ...this.novoPedido });
+  ngOnInit() {
+    // Exemplo inicial
+    this.pedidos = [
+      {
+        id: 1,
+        cliente: 'João',
+        status: 'PENDENTE',
+        itens: [
+          { id: 1, nome: 'Bolo de Chocolate', qtd: 2, preco: 25 }
+        ],
+        data: new Date(),
+        total: 50
+      },
+      {
+        id: 2,
+        cliente: 'Maria',
+        status: 'CONCLUÍDO',
+        itens: [
+          { id: 2, nome: 'Torta de Morango', qtd: 1, preco: 30 }
+        ],
+        data: new Date(),
+        total: 30
+      }
+    ];
+  }
 
-    // reseta o formulário
+  salvar() {
+    const novoId = this.pedidos.length > 0 ? Math.max(...this.pedidos.map(p => p.id ?? 0)) + 1 : 1;
+    const pedido = { ...this.novoPedido, id: novoId };
+    this.pedidos.push(pedido);
+
+    // resetar formulário
     this.novoPedido = {
-      
       cliente: '',
       status: 'PENDENTE',
       itens: [],

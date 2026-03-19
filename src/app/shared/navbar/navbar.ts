@@ -26,8 +26,12 @@ get logado(): boolean {
   }
   return false;
 }
-  logout() {
+
+logout() {
+  if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
     localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+    localStorage.removeItem('role');
   }
+  this.router.navigate(['/login']);
+}
 }

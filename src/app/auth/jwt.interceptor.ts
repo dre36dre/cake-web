@@ -1,7 +1,10 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 
 export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
-  const token = localStorage.getItem('token'); // pega o token salvo no localStorage
+  const token = (typeof window !== 'undefined' && typeof localStorage !== 'undefined')
+    ? localStorage.getItem('token')
+    : null;
+
   if (token) {
     req = req.clone({
       setHeaders: {
@@ -9,5 +12,6 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
       }
     });
   }
+
   return next(req); // segue a requisição normalmente
 };

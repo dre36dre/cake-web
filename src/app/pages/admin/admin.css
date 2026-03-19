@@ -1,0 +1,9 @@
+.admin-page { padding: 1rem; }
+.admin-form { margin-bottom: 1.5rem; }
+.admin-form form { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.admin-form label { display: flex; flex-direction: column; flex: 1 1 200px; gap: 0.3rem; }
+.admin-form input { padding: 0.45rem; border: 1px solid #ccc; border-radius: 4px; }
+.admin-form button { padding: 0.55rem 0.8rem; border: none; background: #007bff; color: #fff; border-radius: 4px; cursor: pointer; }
+.admin-list ul { list-style: none; padding: 0; margin: 0; }
+.admin-list li { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ddd; padding: 0.5rem 0; }
+.admin-list button { border: none; padding: 0.3rem 0.6rem; background: #dc3545; color: #fff; border-radius: 4px; cursor: pointer; }

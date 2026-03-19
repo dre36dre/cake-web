@@ -1,7 +1,7 @@
 import { Item } from './item.model';
 
 export interface Pedido {
-  id?: number;        // opcional, gerado pelo backend
+  id?: number;
   cliente: string;
   status: string;
   itens: Item[];

@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { ProdutosService } from '../../services/produtos.service';
 import { Produto } from '../../models/produto';
@@ -6,7 +7,7 @@ import { Produto } from '../../models/produto';
 @Component({
   selector: 'app-catalogo',
   standalone: true,
-  
+  imports: [CommonModule],
   templateUrl: './catalogo.html',
   styleUrls: ['./catalogo.css']
 })

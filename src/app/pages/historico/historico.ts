@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core';
-import { NgFor } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { PedidosService } from '../../services/pedidos.service';
-import { Pedido } from '../../models/pedido';
+import { Pedido } from '../../models/pedido.model';
 
 @Component({
   selector: 'app-historico',
   standalone: true,
-  imports: [NgFor],
+  imports: [CommonModule],
   templateUrl: './historico.html',
   styleUrls: ['./historico.css']
 })

@@ -1,19 +1,20 @@
 import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ProdutosService } from '../../services/produtos.service'; // corrigido
-import { Produtos } from '../../models/produto';
+import { Produto } from '../../models/produto';
 
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-products',
   standalone: true,
- 
+  imports: [CommonModule, FormsModule],
   templateUrl: './produtos.html',
   styleUrls: ['./produtos.css']
 })
-export class Produto {
-  produtos = signal<Produtos[]>([]);
-  novoProduto: Produtos = { id: 0,
+export class ProdutosComponent {
+  produtos = signal<Produto[]>([]);
+  novoProduto: Produto = { id: 0,
     nome: '', preco: 0, descricao: ''
    
   };
@@ -23,7 +24,7 @@ export class Produto {
   }
 
   carregarProdutos() {
-    this.service.listar().subscribe((lista: Produtos[]) => this.produtos.set(lista));
+    this.service.listar().subscribe((lista: Produto[]) => this.produtos.set(lista));
   }
 
   salvar() {

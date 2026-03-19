@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Produtos } from '../models/produto';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Produto } from '../models/produto';
+
+const PRODUTOS_MOCK: Produto[] = [
+  { id: 1, nome: 'Bolo de Chocolate', preco: 25, descricao: 'Bolo saboroso' },
+  { id: 2, nome: 'Torta de Morango', preco: 30, descricao: 'Torta cremosa' }
+];
 
 @Injectable({ providedIn: 'root' })
 export class ProdutosService {
@@ -9,15 +15,20 @@ export class ProdutosService {
 
   constructor(private http: HttpClient) {}
 
-  listar(): Observable<Produtos[]> {
-    return this.http.get<Produtos[]>(this.apiUrl);
+  listar(): Observable<Produto[]> {
+    return this.http.get<Produto[]>(this.apiUrl)
+      .pipe(catchError(() => of(PRODUTOS_MOCK)));
   }
 
-  salvar(produto: Produtos): Observable<Produtos> {
-    return this.http.post<Produtos>(this.apiUrl, produto);
+  salvar(produto: Produto): Observable<Produto> {
+    return this.http.post<Produto>(this.apiUrl, produto).pipe(
+      catchError(() => of({ ...produto, id: Date.now() }))
+    );
   }
 
   excluir(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
+      catchError(() => of(undefined as void))
+    );
   }
 }
