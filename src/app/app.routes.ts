@@ -22,9 +22,9 @@ export const routes: Routes = [
   { path: '', component: Catalogo },
   { path: 'login', component: Login },
   { path: 'dashboard', component: Dashboard },
-  { path: 'admin', component: AdminPage, canActivate: [authGuard], data: { requiredRole: 'admin' } },
-  { path: 'cliente', component: ClientePage, canActivate: [authGuard], data: { requiredRole: 'cliente' } },
-  { path: 'produtos', component: ProdutosComponent, canActivate: [authGuard], data: { requiredRole: 'admin' } },
-  { path: 'pedidos', component: PedidosComponent, canActivate: [authGuard], data: { requiredRole: 'admin' } },
+  { path: 'admin', component: AdminPage, canActivate: [authGuard] },
+  { path: 'cliente', component: ClientePage },
+  { path: 'produtos', component: ProdutosComponent, canActivate: [authGuard] },
+  { path: 'pedidos', component: PedidosComponent, canActivate: [authGuard] },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];

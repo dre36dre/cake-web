@@ -13,16 +13,16 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(email: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/login`, {
-      email,
-      password
-    }).pipe(
-      catchError(() => {
-        const role = email === 'admin@cake.com' ? 'admin' : 'cliente';
-        return of({ token: 'fake-token', role } as AuthResponse);
-      })
-    );
-  }
-
+login(email: string, password: string): Observable<AuthResponse> {
+  return this.http.post<AuthResponse>(`${this.apiUrl}/login`, {
+    email,
+    password
+  }).pipe(
+    catchError((error) => {
+      console.error('Erro no login', error);
+      throw error;
+    })
+  );
 }
+}
+
