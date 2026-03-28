@@ -1,68 +1,33 @@
-import {
-  AngularNodeAppEngine,
-  createNodeRequestHandler,
-  isMainModule,
-  writeResponseToNodeResponse,
-} from '@angular/ssr/node';
-import express from 'express';
-import { join } from 'node:path';
+import 'zone-node';
+import { APP_BASE_HREF } from '@angular/common';
+import { ngExpressEngine } from '@nguniversal/express-engine';
+import * as express from 'express';
+import { join } from 'path';
 
-const browserDistFolder = join(import.meta.dirname, '../browser');
+import {  } from './main.server';
 
 const app = express();
-const angularApp = new AngularNodeAppEngine();
+const port = process.env.PORT || 4000;
 
-/**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/{*splat}', (req, res) => {
- *   // Handle API request
- * });
- * ```
- */
+// Configura o motor de renderização do Angular Universal
+app.engine('html', ngExpressEngine({ bootstrap: AppServerModule }));
+app.set('view engine', 'html');
+app.set('views', join(process.cwd(), 'dist/browser'));
 
-/**
- * Serve static files from /browser
- */
-app.use(
-  express.static(browserDistFolder, {
-    maxAge: '1y',
-    index: false,
-    redirect: false,
-  }),
-);
-
-/**
- * Handle all other requests by rendering the Angular application.
- */
-app.use((req, res, next) => {
-  angularApp
-    .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
-    )
-    .catch(next);
+// Todas as rotas são tratadas pelo Angular
+app.get('*', (req, res) => {
+  res.render('index', {
+    req,
+    providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }]
+  });
 });
 
-/**
- * Start the server if this module is the main entry point, or it is ran via PM2.
- * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
- */
-if (isMainModule(import.meta.url) || process.env['pm_id']) {
-  const port = process.env['PORT'] || 4000;
-  app.listen(port, (error) => {
-    if (error) {
-      throw error;
-    }
+// Inicializa o servidor
+const server = app.listen(port, () => {
+  console.log(`Angular Universal rodando na porta ${port}`);
+});
 
-    console.log(`Node Express server listening on http://localhost:${port}`);
-  });
-}
-
-/**
- * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
- */
-export const reqHandler = createNodeRequestHandler(app);
+// Captura erros corretamente
+server.on('error', (err: Error) => {
+  console.error('Erro ao iniciar servidor:', err);
+});

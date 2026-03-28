@@ -1,8 +1,7 @@
 export interface Produto {
-  id: number;
-  nome: string;
-  preco: number;
-  descricao: string;
+  id?: number;
+  name: string;
+  description: string;
+  price: number;
+  available: boolean;
 }
-
-export type Produtos = Produto;

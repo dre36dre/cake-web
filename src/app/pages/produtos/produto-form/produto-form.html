@@ -1,0 +1,16 @@
+<h2>Cadastrar Produto</h2>
+<form (ngSubmit)="salvar()" #produtoForm="ngForm">
+  <label>Nome:</label>
+  <input [(ngModel)]="produto.name" name="name" required />
+
+  <label>Descrição:</label>
+  <input [(ngModel)]="produto.description" name="description" />
+
+  <label>Preço:</label>
+  <input type="number" [(ngModel)]="produto.price" name="price" required />
+
+  <label>Disponível:</label>
+  <input type="checkbox" [(ngModel)]="produto.available" name="available" />
+
+  <button type="submit" [disabled]="!produtoForm.form.valid">Salvar</button>
+</form>
