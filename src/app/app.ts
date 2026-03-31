@@ -1,11 +1,8 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { Navbar } from './shared/navbar/navbar'; // importa o Navbar
 
 @Component({
+  standalone: false,
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, Navbar], // adiciona Navbar nos imports
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })

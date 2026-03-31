@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProdutoService } from '../../../services/produto.service';
+import { ProdutoService } from '../../../services/produtos.service';
 import { Produto } from '../../../models/produto';
 
 @Component({
+  standalone: false,
   selector: 'app-produto-detail',
   templateUrl: './produto-detail.html',
   styleUrls: ['./produto-detail.css']
@@ -20,10 +21,10 @@ export class ProdutoDetail implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.produtoService.getAll().subscribe({
-        next: (produtos) => {
-          this.produto = produtos.find(p => p.id === +id);
+        next: (produtos: Produto[]) => {
+          this.produto = produtos.find((p: Produto) => p.id === +id);
         },
-        error: (err) => console.error('Erro ao carregar produto', err)
+        error: (err: any) => console.error('Erro ao carregar produto', err)
       });
     }
   }

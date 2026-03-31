@@ -1,10 +1,10 @@
-import 'zone-node';
+import 'zone.js/node';
 import { APP_BASE_HREF } from '@angular/common';
 import { ngExpressEngine } from '@nguniversal/express-engine';
-import * as express from 'express';
+import express, { Request, Response } from 'express';
 import { join } from 'path';
 
-import {  } from './main.server';
+import { AppServerModule } from './main.server';
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -15,7 +15,7 @@ app.set('view engine', 'html');
 app.set('views', join(process.cwd(), 'dist/browser'));
 
 // Todas as rotas são tratadas pelo Angular
-app.get('*', (req, res) => {
+app.get(/.*/, (req: Request, res: Response) => {
   res.render('index', {
     req,
     providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }]

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CarrinhoService } from '../../services/carrinho.service';
 import { HttpClient } from '@angular/common/http';
@@ -15,18 +15,18 @@ export class Checkout {
   telefone = '';
   endereco = '';
 
-constructor(
-  public carrinho: CarrinhoService,
-  private http: HttpClient
-) {}
+  private http = inject(HttpClient);
+
+  constructor(public carrinho: CarrinhoService) {}
 
 finalizarPedido() {
   const pedido = {
     itens: this.carrinho.itens().map(i => ({
-      nome: i.produto.nome,
+      nome: i.produto.name,
       qtd: i.qtd,
-      preco: i.produto.preco
+      preco: i.produto.price
     })),
+
     total: this.carrinho.total(),
     cliente: {
       nome: this.nome,
@@ -37,7 +37,7 @@ finalizarPedido() {
 
   this.http.post('http://localhost:8080/api/pedidos', pedido).subscribe(() => {
     const itens = this.carrinho.itens()
-      .map(i => `${i.qtd}x ${i.produto.nome}`)
+      .map(i => `${i.qtd}x ${i.produto.name}`)
       .join(', ');
 
     const mensagem = `Olá, gostaria de confirmar meu pedido: ${itens}. 

@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProdutosService } from '../../services/produtos.service'; // corrigido
+import { ProdutoService } from '../../services/produtos.service';
 import { Produto } from '../../models/produto';
 
 import { FormsModule } from '@angular/forms';
@@ -14,12 +14,14 @@ import { FormsModule } from '@angular/forms';
 })
 export class ProdutosComponent {
   produtos = signal<Produto[]>([]);
-  novoProduto: Produto = { id: 0,
-    nome: '', preco: 0, descricao: ''
-   
+  novoProduto: Produto = {
+    name: '',
+    description: '',
+    price: 0,
+    available: true
   };
 
-  constructor(private service: ProdutosService) {
+  constructor(private service: ProdutoService) {
     this.carregarProdutos();
   }
 
@@ -30,7 +32,12 @@ export class ProdutosComponent {
   salvar() {
     this.service.salvar(this.novoProduto).subscribe(() => {
       this.carregarProdutos();
-      this.novoProduto = { id: 0,nome: '', preco: 0, descricao: '' };
+      this.novoProduto = {
+        name: '',
+        description: '',
+        price: 0,
+        available: true
+      };
     });
   }
 

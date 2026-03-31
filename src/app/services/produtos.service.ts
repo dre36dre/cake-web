@@ -16,4 +16,19 @@ export class ProdutoService {
   create(produto: Produto): Observable<Produto> {
     return this.http.post<Produto>(this.apiUrl, produto);
   }
+
+  listar(): Observable<Produto[]> {
+    return this.http.get<Produto[]>(this.apiUrl);
+  }
+
+  salvar(produto: Produto): Observable<Produto> {
+    if (produto.id) {
+      return this.http.put<Produto>(`${this.apiUrl}/${produto.id}`, produto);
+    }
+    return this.http.post<Produto>(this.apiUrl, produto);
+  }
+
+  excluir(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 }

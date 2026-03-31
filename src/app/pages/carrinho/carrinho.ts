@@ -25,6 +25,6 @@ export class Carrinho {
   }
 
   calcularTotal(): number {
-    return this.itens.reduce((acc, i) => acc + i.produto.preco * i.quantidade, 0);
+    return this.itens.reduce((acc, i) => acc + i.produto.price * i.quantidade, 0);
   }
 }

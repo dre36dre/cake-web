@@ -11,3 +11,5 @@ import { App } from './app/app';
   bootstrap: [App],
 })
 export class AppServerModule {}
+
+export default AppServerModule;

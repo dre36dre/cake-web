@@ -8,8 +8,8 @@
 
   <ul>
     <li *ngFor="let p of produtos()">
-      <strong>{{ p.nome }}</strong> - R$ {{ p.preco }}
-      <p>{{ p.descricao }}</p>
+      <strong>{{ p.name }}</strong> - R$ {{ p.price }}
+      <p>{{ p.description }}</p>
       <button (click)="excluir(p.id!)">Excluir</button>
     </li>
   </ul>

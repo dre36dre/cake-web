@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ProdutosService } from '../../services/produtos.service';
+import { ProdutoService } from '../../services/produtos.service';
 import { Produto } from '../../models/produto';
 
 @Component({
@@ -16,12 +16,12 @@ export class Catalogo {
   filtro = signal('');
   carrinho = signal<Produto[]>([]);
 
-  constructor(private service: ProdutosService) {
+  constructor(private service: ProdutoService) {
     this.carregarProdutos();
   }
 
   carregarProdutos() {
-    this.service.listar().subscribe(lista => this.produtos.set(lista));
+    this.service.listar().subscribe((lista: Produto[]) => this.produtos.set(lista));
   }
 
   adicionar(produto: Produto) {
@@ -31,7 +31,7 @@ export class Catalogo {
   get produtosFiltrados(): Produto[] {
     const termo = this.filtro().toLowerCase();
     return this.produtos().filter(p =>
-      p.nome.toLowerCase().includes(termo)
+      p.name.toLowerCase().includes(termo)
     );
   }
 }
