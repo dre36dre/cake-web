@@ -9,6 +9,14 @@
   <label>Preço:</label>
   <input type="number" [(ngModel)]="produto.price" name="price" required />
 
+  <label>Imagem do Produto:</label>
+  <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+  
+  <div *ngIf="produto.imageUrl" style="margin: 10px 0;">
+    <img [src]="produto.imageUrl" alt="Preview" style="max-width: 200px; max-height: 200px;">
+    <p><small>Preview da imagem</small></p>
+  </div>
+
   <label>Disponível:</label>
   <input type="checkbox" [(ngModel)]="produto.available" name="available" />
 
