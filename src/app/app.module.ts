@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { provideServerRendering, withRoutes } from '@angular/ssr';
 
@@ -25,6 +26,7 @@ import { ProdutoDetail } from './pages/produtos/produto-detail/produto-detail';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot(routes),
     Navbar
   ],
