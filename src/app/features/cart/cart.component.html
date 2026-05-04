@@ -1,0 +1,38 @@
+<div class="cart-container">
+  <h2>🛒 Seu Carrinho</h2>
+
+  <!-- Se o carrinho estiver vazio -->
+  @if (cartService.count() === 0) {
+    <p class="empty-msg">O seu carrinho está vazio. Que tal um bolo?</p>
+  } 
+  
+  <!-- Se tiver itens -->
+  @else {
+    <div class="cart-items">
+      @for (item of cartService.items(); track item.id) {
+        <div class="cart-item">
+          <img [src]="item.image" alt="{{item.name}}" class="item-thumb">
+          
+          <div class="item-details">
+            <h4>{{ item.name }}</h4>
+            <p>{{ item.price | currency:'BRL' }}</p>
+          </div>
+
+          <div class="item-controls">
+            <button (click)="decreaseQty(item.id)">-</button>
+            <span>{{ item.quantity }}</span>
+            <button (click)="increaseQty(item.id)">+</button>
+          </div>
+
+          <button class="btn-remove" (click)="removeItem(item.id)">🗑️</button>
+        </div>
+      }
+    </div>
+
+    <div class="cart-summary">
+      <p>Itens totais: <strong>{{ cartService.count() }}</strong></p>
+      <p class="total-price">Total: {{ cartService.total() | currency:'BRL' }}</p>
+      <button class="btn-checkout" (click)="checkout()">Finalizar Pedido</button>
+    </div>
+  }
+</div>
