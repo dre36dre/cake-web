@@ -1,0 +1,19 @@
+.dashboard {
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.cards {
+  display: flex;
+  gap: 2rem;
+}
+
+.card {
+  background: #fff3e0;
+  border: 1px solid #f5c16c;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 200px;
+  text-align: center;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+}

@@ -1,0 +1,17 @@
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+}
+
+label {
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 15px;
+  padding: 8px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+}

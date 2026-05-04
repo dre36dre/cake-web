@@ -1,0 +1,14 @@
+<h2>Histórico de Pedidos</h2>
+
+<div *ngFor="let pedido of pedidos()">
+  <h3>Pedido #{{ pedido.id }}</h3>
+  <p>Data: {{ pedido.data }}</p>
+  <p>Status: {{ pedido.status }}</p>
+  <ul>
+    <li *ngFor="let item of pedido.itens">
+      {{ item.qtd }}x {{ item.nome }} - R$ {{ item.preco }}
+    </li>
+  </ul>
+  <strong>Total: R$ {{ pedido.total }}</strong>
+  <hr>
+</div>

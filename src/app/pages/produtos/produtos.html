@@ -1,0 +1,16 @@
+<div class="produtos">
+  <h1>Gestão de Bolos 🍰</h1>
+
+  <form (ngSubmit)="salvar()">
+   
+    <button type="submit">Salvar</button>
+  </form>
+
+  <ul>
+    <li *ngFor="let p of produtos()">
+      <strong>{{ p.name }}</strong> - R$ {{ p.price }}
+      <p>{{ p.description }}</p>
+      <button (click)="excluir(p.id!)">Excluir</button>
+    </li>
+  </ul>
+</div>

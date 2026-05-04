@@ -1,0 +1,15 @@
+<div class="admin-page">
+  <h1>{{ titulo }}</h1>
+  <p>Bem-vinda, dona da loja! Aqui você pode visualizar rapidamente os indicadores.</p>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Pedidos pendentes</h3>
+      <p>{{ pedidosPendentes }}</p>
+    </div>
+    <div class="card">
+      <h3>Faturamento hoje</h3>
+      <p>R$ {{ faturamentoHoje | number:'1.2-2' }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+.admin-page { padding: 1rem; }
+.cards { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+.card { border: 1px solid #ccc; border-radius: 8px; padding: 1rem; flex: 1 1 180px; background: #fff; }
+.card h3 { margin: 0 0 .5rem; }

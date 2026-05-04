@@ -1,0 +1,25 @@
+<h2>Finalizar Pedido</h2>
+
+<form (ngSubmit)="finalizarPedido()">
+  <label>
+    Nome:
+    <input [(ngModel)]="nome" name="nome" required />
+  </label>
+  <br>
+
+  <label>
+    Telefone:
+    <input [(ngModel)]="telefone" name="telefone" required />
+  </label>
+  <br>
+
+  <label>
+    Endereço:
+    <input [(ngModel)]="endereco" name="endereco" required />
+  </label>
+  <br>
+
+  <button type="submit">Enviar Pedido</button>
+</form>
+
+<p>Ou fale conosco diretamente no WhatsApp!</p>

@@ -1,0 +1,26 @@
+<div class="pedidos">
+  <h1>Gestão de Pedidos 📦</h1>
+
+  <form (ngSubmit)="salvar()">
+    <input type="text" [(ngModel)]="novoPedido.cliente" name="cliente" placeholder="Cliente" required />
+
+    <select [(ngModel)]="novoPedido.status" name="status">
+      <option value="PENDENTE">Pendente</option>
+      <option value="CONCLUÍDO">Concluído</option>
+    </select>
+
+    <button type="submit">Salvar</button>
+  </form>
+
+  <ul>
+    <li *ngFor="let p of pedidos">
+      <strong>{{ p.cliente }}</strong> - Status: {{ p.status }} <br />
+      <span *ngFor="let item of p.itens">
+        {{ item.qtd }}x {{ item.nome }} - R$ {{ item.preco }}
+      </span>
+      <br />
+      Total: R$ {{ p.total }}
+      <button (click)="excluir(p.id!)">Excluir</button>
+    </li>
+  </ul>
+</div>
